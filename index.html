@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora ACT - Benefício Fiscal</title>
+  <meta name="description" content="Calculadora web responsiva para estimar o benefício fiscal do modelo ACT em empresas de Lucro Real." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <a href="#inicio" class="brand">
+        <span class="brand-mark">A</span>
+        <div>
+          <strong>ACT Fiscal Tool</strong>
+          <small>Calculadora prática e responsiva</small>
+        </div>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="nav" id="navMenu">
+        <a href="#inicio">Início</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#cenarios">Cenários</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#premissas">Premissas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> Solução web pronta para apresentação, operação e vendas</div>
+          <h1>Calculadora de benefício fiscal ACT com experiência premium</h1>
+          <p>
+            Estime rapidamente a economia de IR e CSLL para empresas de Lucro Real,
+            usando o modelo apresentado pela ACT. A tela já abre com o exemplo padrão
+            da apresentação e pode ser ajustada em segundos.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="fillExampleHero">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              Carregar exemplo ACT
+            </button>
+            <a class="btn btn-secondary" href="#calculadora">
+              <i class="fa-solid fa-calculator"></i>
+              Ir para calculadora
+            </a>
+          </div>
+          <div class="hero-chips">
+            <span><i class="fa-solid fa-mobile-screen-button"></i> Responsiva</span>
+            <span><i class="fa-solid fa-chart-column"></i> Gráficos dinâmicos</span>
+            <span><i class="fa-solid fa-bolt"></i> Uso rápido</span>
+          </div>
+        </div>
+
+        <div class="hero-panel glass reveal delay-1">
+          <div class="panel-head">
+            <h3>Resumo instantâneo</h3>
+            <span class="pill success">Exemplo preenchido</span>
+          </div>
+          <div class="mini-metrics">
+            <div class="mini-card">
+              <span>Gasto elegível</span>
+              <strong id="heroEligible">R$ 4.000.000,00</strong>
+            </div>
+            <div class="mini-card">
+              <span>Base reduzida</span>
+              <strong id="heroReducedBase">R$ 196.000.000,00</strong>
+            </div>
+            <div class="mini-card highlight">
+              <span>Economia estimada</span>
+              <strong id="heroSaving">R$ 1.360.000,00</strong>
+            </div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Eficiência do benefício</span>
+              <strong id="heroRate">34,00%</strong>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="heroProgress"></div>
+            </div>
+            <small>Percentual de economia sobre o gasto elegível em tecnologia.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-strip reveal">
+      <div class="container stats-grid">
+        <article class="stat-card glass">
+          <i class="fa-solid fa-building"></i>
+          <div>
+            <span>Regime-alvo</span>
+            <strong>Lucro Real</strong>
+          </div>
+        </article>
+        <article class="stat-card glass">
+          <i class="fa-solid fa-file-invoice-dollar"></i>
+          <div>
+            <span>Tributos considerados</span>
+            <strong>IR + IR Adicional + CSLL</strong>
+          </div>
+        </article>
+        <article class="stat-card glass">
+          <i class="fa-solid fa-shield"></i>
+          <div>
+            <span>Uso ideal</span>
+            <strong>Simulação executiva</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="calculadora">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Calculadora</span>
+            <h2>Prática, clara e pronta para uso</h2>
+          </div>
+          <div class="actions-wrap">
+            <button class="btn btn-primary" id="fillExampleBtn"><i class="fa-solid fa-rotate"></i> Usar exemplo</button>
+            <button class="btn btn-ghost" id="clearBtn"><i class="fa-solid fa-eraser"></i> Limpar</button>
+            <button class="btn btn-ghost" id="copySummaryBtn"><i class="fa-solid fa-copy"></i> Copiar resumo</button>
+          </div>
+        </div>
+
+        <div class="calculator-layout">
+          <article class="glass card reveal">
+            <div class="card-title">
+              <i class="fa-solid fa-sliders"></i>
+              <h3>Entradas</h3>
+            </div>
+            <div class="form-grid">
+              <label class="field">
+                <span>Receita bruta anual</span>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-sack-dollar"></i>
+                  <input type="number" id="receita" min="0" step="0.01" />
+                </div>
+              </label>
+
+              <label class="field">
+                <span>Despesas gerais</span>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <input type="number" id="despesasGerais" min="0" step="0.01" />
+                </div>
+              </label>
+
+              <label class="field">
+                <span>Despesas com tecnologia elegíveis</span>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-microchip"></i>
+                  <input type="number" id="despesasTech" min="0" step="0.01" />
+                </div>
+                <small>Valor que será usado na simulação do benefício fiscal.</small>
+              </label>
+
+              <label class="field readonly-field">
+                <span>Outras despesas</span>
+                <div class="readonly-box" id="outrasDespesas">R$ 0,00</div>
+              </label>
+
+              <label class="field readonly-field">
+                <span>Lucro operacional</span>
+                <div class="readonly-box" id="lucroOperacional">R$ 0,00</div>
+              </label>
+
+              <label class="field inline-field">
+                <span>Aplicar trava de base mínima zero</span>
+                <div class="switch-wrap">
+                  <input type="checkbox" id="baseMinima" checked />
+                  <span class="switch"></span>
+                </div>
+              </label>
+            </div>
+          </article>
+
+          <article class="glass card results-card reveal delay-1">
+            <div class="card-title">
+              <i class="fa-solid fa-chart-line"></i>
+              <h3>Resultado executivo</h3>
+            </div>
+            <div class="results-grid">
+              <div class="result-box accent-pink">
+                <span>Imposto sem ACT</span>
+                <strong id="impostoSemAct">R$ 0,00</strong>
+              </div>
+              <div class="result-box accent-green">
+                <span>Imposto com ACT</span>
+                <strong id="impostoComAct">R$ 0,00</strong>
+              </div>
+              <div class="result-box accent-blue highlight-box">
+                <span>Economia anual estimada</span>
+                <strong id="economiaAnual">R$ 0,00</strong>
+              </div>
+              <div class="result-box accent-gold">
+                <span>Economia sobre gasto elegível</span>
+                <strong id="economiaPercentual">0,00%</strong>
+              </div>
+            </div>
+
+            <div class="comparison-grid">
+              <div class="compare-box">
+                <h4>Sem ACT</h4>
+                <ul>
+                  <li><span>Base de cálculo</span><strong id="baseSemAct">R$ 0,00</strong></li>
+                  <li><span>IR 15%</span><strong id="irSemAct">R$ 0,00</strong></li>
+                  <li><span>IR adicional 10%</span><strong id="irAdSemAct">R$ 0,00</strong></li>
+                  <li><span>CSLL 9%</span><strong id="csllSemAct">R$ 0,00</strong></li>
+                </ul>
+              </div>
+              <div class="compare-box featured">
+                <h4>Com ACT</h4>
+                <ul>
+                  <li><span>Base de cálculo</span><strong id="baseComAct">R$ 0,00</strong></li>
+                  <li><span>Exclusão fiscal</span><strong id="exclusaoAct">R$ 0,00</strong></li>
+                  <li><span>IR 15%</span><strong id="irComAct">R$ 0,00</strong></li>
+                  <li><span>IR adicional 10%</span><strong id="irAdComAct">R$ 0,00</strong></li>
+                  <li><span>CSLL 9%</span><strong id="csllComAct">R$ 0,00</strong></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="cenarios">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Cenários</span>
+            <h2>Teste rapidamente diferentes valores elegíveis</h2>
+          </div>
+        </div>
+
+        <div class="scenarios-layout">
+          <article class="glass card reveal">
+            <div class="card-title">
+              <i class="fa-solid fa-arrow-up-right-dots"></i>
+              <h3>Simulador rápido</h3>
+            </div>
+            <div class="range-box">
+              <div class="range-head">
+                <span>Gasto elegível em tecnologia</span>
+                <strong id="sliderValue">R$ 4.000.000,00</strong>
+              </div>
+              <input type="range" id="techRange" min="0" max="10000000" step="50000" />
+              <div class="preset-buttons">
+                <button class="chip-btn" data-value="1000000">R$ 1 mi</button>
+                <button class="chip-btn" data-value="2000000">R$ 2 mi</button>
+                <button class="chip-btn active" data-value="4000000">R$ 4 mi</button>
+                <button class="chip-btn" data-value="6000000">R$ 6 mi</button>
+                <button class="chip-btn" data-value="10000000">R$ 10 mi</button>
+              </div>
+            </div>
+
+            <div class="scenario-summary">
+              <div>
+                <span>Economia simulada</span>
+                <strong id="scenarioSaving">R$ 1.360.000,00</strong>
+              </div>
+              <div>
+                <span>Nova base com ACT</span>
+                <strong id="scenarioBase">R$ 196.000.000,00</strong>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Indicador</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Lucro operacional</td>
+                    <td id="tableLucro">R$ 200.000.000,00</td>
+                  </tr>
+                  <tr>
+                    <td>Imposto sem ACT</td>
+                    <td id="tableSem">R$ 69.976.000,00</td>
+                  </tr>
+                  <tr>
+                    <td>Imposto com ACT</td>
+                    <td id="tableCom">R$ 68.616.000,00</td>
+                  </tr>
+                  <tr>
+                    <td>Economia</td>
+                    <td id="tableSaving">R$ 1.360.000,00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="glass card reveal delay-1">
+            <div class="card-title">
+              <i class="fa-solid fa-chart-column"></i>
+              <h3>Gráficos</h3>
+            </div>
+            <div class="chart-panel"><canvas id="comparisonChart"></canvas></div>
+            <div class="chart-panel small"><canvas id="taxChart"></canvas></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="como-funciona">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Como funciona</span>
+            <h2>Fluxo simplificado para um público leigo</h2>
+          </div>
+        </div>
+
+        <div class="steps-grid">
+          <article class="glass step-card reveal">
+            <span class="step-number">01</span>
+            <i class="fa-solid fa-building-user"></i>
+            <h3>A empresa informa seus números</h3>
+            <p>Receita, despesas gerais e valor do gasto elegível em tecnologia.</p>
+          </article>
+          <article class="glass step-card reveal delay-1">
+            <span class="step-number">02</span>
+            <i class="fa-solid fa-scale-balanced"></i>
+            <h3>A calculadora compara dois cenários</h3>
+            <p>Um sem benefício e outro com a exclusão fiscal do valor elegível.</p>
+          </article>
+          <article class="glass step-card reveal delay-2">
+            <span class="step-number">03</span>
+            <i class="fa-solid fa-percent"></i>
+            <h3>Os tributos são recalculados</h3>
+            <p>IR 15%, IR adicional 10% e CSLL 9% são projetados automaticamente.</p>
+          </article>
+          <article class="glass step-card reveal delay-3">
+            <span class="step-number">04</span>
+            <i class="fa-solid fa-piggy-bank"></i>
+            <h3>A economia aparece no painel</h3>
+            <p>O resultado mostra quanto a empresa pode preservar em caixa.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="premissas">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Premissas</span>
+            <h2>Notas de uso e referências</h2>
+          </div>
+        </div>
+
+        <div class="premises-grid">
+          <article class="glass premise-card reveal">
+            <div class="card-title">
+              <i class="fa-solid fa-circle-info"></i>
+              <h3>Premissas da simulação</h3>
+            </div>
+            <ul class="bullets">
+              <li>Foco em empresas no regime de Lucro Real.</li>
+              <li>Usa o exemplo-base da apresentação da ACT.</li>
+              <li>Considera IR 15%, adicional de IR 10% e CSLL 9%.</li>
+              <li>IR adicional estimado sobre a parcela que excede R$ 240.000,00 ao ano.</li>
+              <li>Esta ferramenta é uma simulação comercial e executiva, não substitui parecer contábil ou jurídico.</li>
+            </ul>
+          </article>
+
+          <article class="glass premise-card reveal delay-1">
+            <div class="card-title">
+              <i class="fa-solid fa-book-open"></i>
+              <h3>Base do conteúdo</h3>
+            </div>
+            <ul class="bullets compact">
+              <li>Apresentação "[Exata] ACT - Ecossistema e Economia Financeira".</li>
+              <li>Exemplo da ACT: receita de R$ 800 mi, despesas gerais de R$ 600 mi, tecnologia de R$ 4 mi e economia anual de R$ 1,36 mi.</li>
+              <li>Referências citadas na apresentação: Lei Federal nº 9.249/95 e IN SRF nº 87/96.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div>
+        <strong>Calculadora ACT - versão web responsiva</strong>
+        <p>Desenvolvida para priorizar design, clareza e usabilidade.</p>
+      </div>
+      <a href="#inicio" class="btn btn-secondary small-btn"><i class="fa-solid fa-arrow-up"></i> Voltar ao topo</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Resumo copiado com sucesso.</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
