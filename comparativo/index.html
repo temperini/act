@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>MonyU | Modelo ACT x Lei do Bem</title>
+    <meta name="description" content="Página executiva comparando Modelo ACT e Lei do Bem.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23ff0055'/%3E%3Cpath fill='%23fff' d='M63 156c-27-11-40-40-30-67 6-16 18-35 31-50 11-13 31-8 34 9 2 11-2 24-10 40l-14 27c-2 4 4 7 7 3l32-55c9-15 31-10 35 7 2 9 0 20-7 32l-20 35c-13 22-34 29-58 19Z'/%3E%3Cpath fill='%23fff' d='m91 29 31-18-12 18h21l-42 28 17-25H91Zm52 42 25-15-9 15h16l-34 22 13-20h-11Z'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+    <header class="topbar">
+      <a class="brand" href="#slide-1" aria-label="MonyU - Modelo ACT x Lei do Bem">
+        <span class="brand-lockup" aria-hidden="true">
+          <img
+            class="brand-img"
+            src="file:///G:/Meu%20Drive/===%20OFFICE%20===/LOGOS/logo%20monyu%20-%20full.png"
+            alt=""
+          >
+          <svg class="brand-horizontal brand-fallback" viewBox="0 0 640 168" role="img">
+            <title>MonyU</title>
+            <g class="logo-word">
+              <text x="0" y="116">MONY</text>
+              <text class="logo-u" x="412" y="116">U</text>
+            </g>
+            <g class="logo-spark">
+              <path d="M504 68h46l-27 30h52l-92 61 31-45h-52z"></path>
+              <circle cx="560" cy="31" r="26"></circle>
+              <circle cx="613" cy="37" r="18"></circle>
+              <circle cx="596" cy="78" r="16"></circle>
+              <text x="550" y="41">$</text>
+              <text x="606" y="44">$</text>
+              <text x="589" y="84">$</text>
+            </g>
+          </svg>
+        </span>
+        <span class="brand-tagline">Financiando boas ideias</span>
+      </a>
+
+      <nav class="top-actions" aria-label="Atalhos principais">
+        <a class="source-link" href="#fontes">
+          <span class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5V5.8A2.8 2.8 0 0 1 6.8 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5"></path><path d="M8 7h8M8 11h6"></path></svg>
+          </span>
+          <span class="source-text">Fontes</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="menu-lines" aria-hidden="true"></span>
+          <span class="sr-only">Abrir índice</span>
+        </button>
+      </nav>
+    </header>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Índice móvel" hidden>
+      <ol id="mobileNav"></ol>
+    </nav>
+
+    <div class="app-shell">
+      <aside class="guide" aria-label="Índice da apresentação">
+        <div class="guide-inner">
+          <p class="guide-eyebrow">Menu guia</p>
+          <h2>Índice</h2>
+          <ol id="desktopNav"></ol>
+        </div>
+      </aside>
+
+      <main id="slides" class="slides" tabindex="-1"></main>
+    </div>
+
+    <button class="to-top" id="toTop" type="button" aria-label="Voltar ao início">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"></path></svg>
+    </button>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
